@@ -43,7 +43,7 @@ function setup() {
   trex.scale = 0.5;
   trex.setCollider("circle");
 
-  ground = createSprite(width / 2, height / 2, width, 20);
+  ground = createSprite(width / 2, height / 2, width * 5, 20);
   ground.addImage("ground", groundImage);
   ground.x = width / 2;
   ground.velocityX = -(6 + 3 * score / 100);
@@ -60,7 +60,7 @@ function setup() {
   gameOver.visible = false;
   restart.visible = false;
 
-  invisibleGround = createSprite(width / 2, height / 2 + 5, width, 10);
+  invisibleGround = createSprite(width / 2, height / 2 + 5, width * 5, 10);
   invisibleGround.x = width / 2;
   invisibleGround.visible = false;
 
@@ -74,11 +74,12 @@ function draw() {
   background(backgroundImage);
   text("Score: " + score, 500, 50);
 
-  if(height >= 1000) {
+  if (height >= 1000) {
     textSize(35);
     text("Score: " + score, 500, 50);
   }
   camera.position.x = width / 2;
+  camera.position.y = trex.y;
 
   if (gameState === PLAY) {
     score += Math.round(getFrameRate() / 60);
